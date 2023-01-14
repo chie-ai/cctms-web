@@ -1,0 +1,80 @@
+@font-face {
+  font-family: 'Questrial Regular';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('~assets/fonts/Questrial/Questrial-Regular.ttf') format('truetype');
+}
+.a-main-font {
+  font-family: 'Questrial Regular';
+}
+.a-font-b {
+  font-weight: bold;
+}
+.a-font-dim-color {
+  color: #808b96;
+}
+.a-hr {
+  height: 1px;
+  background: #BDC3C7;
+  border-radius: 1px;
+}
+.a-pointer {
+  cursor: pointer;
+}
+.a-width-100 {
+  height: 100vh;
+}
+.a-va-m {
+  vertical-align: middle !important;
+}
+.a-wrapper {
+  // position: relative;
+  display: flex;
+  justify-content: center;
+  max-width: 100%;
+}
+.a-container {
+  width: 1400px;
+}
+.a-display-flex {
+  display: flex;
+}
+.a-align-center {
+  align-items: center !important;
+}
+.a-shadow-none {
+  box-shadow: none !important;
+}
+.a-action-btn {
+  margin: auto;
+  height: 32px;
+  width: 32px;
+  border-radius: 50%;
+  background: #3498db !important;
+  box-shadow: none !important;
+  justify-content: center;
+  border: none !important;
+}
+.a-action-btn:focus {
+  background: #aeb6bf;
+}
+.a-add-user-btn {
+  background: #3498db !important;
+}
+.a-action-icon {
+  position: relative;
+  font-size: 18px;
+  bottom: -4px !important;
+}
+.a-pagination .page-link {
+  box-shadow: none !important;
+}
+.a-pagination .page-link.a-page-text-color {
+  color: #3498db  !important;
+}
+.pagination > .page-item.active > a {
+  border-color: #3498db !important;
+  background: #3498db !important;
+  color: #fff !important;
+}

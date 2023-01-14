@@ -1,0 +1,81 @@
+.a-userprofile-container {
+  position: fixed;
+  top: 0pt;
+  left: 0pt;
+  height: 100%;
+  width: 100%;
+  overflow-y: auto;
+  background: rgba(0,0,0,0.4);
+  z-index: 10;
+  .a-base-form {
+    position: relative;
+    width: 100%;
+    height: auto;
+    justify-content: center;
+    .a-userprofile-form {
+      border-radius: 12px;
+      min-height: 300px !important;
+      width: 400px;
+      .a-preview-user-profile {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #eaeded;
+        .a-profile {
+          position: relative;
+          width: 250px;
+          height: 250px;
+          border-radius: 50%;
+          background: #e5e7e9;
+          overflow: hidden;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          .a-profile-overlay {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0,0,0,0.2);
+            transition: background 0.2s ease, z-index 0.2s ease;
+            z-index: 10;
+            .a-profile-text {
+              position: absolute;
+              bottom: 52px;
+            }
+            .a-profile-icon {
+              font-size: 40px;
+              color: rgba(255,255,255,0.4) !important;
+              transition: color 0.2s ease;
+            }
+          }
+          .a-profile-img {
+            position: absolute;
+            display: block;
+            z-index: 11;
+          }
+        }
+        .a-profile:hover {
+          .a-profile-overlay {
+            background: rgba(0,0,0,0.3);
+            z-index: 12;
+            .a-profile-icon {
+              color: rgba(255,255,255,0.6) !important;
+            }
+          }
+        }
+      }
+      .a-btn-upload-profile {
+        box-shadow: none !important;
+        background: #3498db !important;
+        transition: background 0.2s ease;
+      }
+      .a-btn-upload-profile:hover {
+        background: #328FCE !important;
+      }
+    }
+  }
+}

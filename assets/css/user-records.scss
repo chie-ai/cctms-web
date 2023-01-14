@@ -1,0 +1,31 @@
+.a-user-list-container {
+  width: auto !important;
+  box-shadow: 0 0 5px 2px #D7DBDD !important;
+  overflow: auto !important;
+  .a-search-icon {
+    background: #F0F3F4;
+    border-color: #F0F3F4 !important;
+    border-right: none !important;
+  }
+  .a-search_by-input {
+    background: #F0F3F4;
+    border-color: #F0F3F4;
+    border-left: none !important;
+    box-shadow: none !important;
+  }
+  .a-input-group {
+    border-radius: 4.5px;
+    transition: box-shadow 0.2s ease;
+  }
+  .a-input-group:focus-within {
+    box-shadow: 0 0 0 3px #D7DBDD !important;
+  }
+  .a-input-group:focus-within {
+    box-shadow: 0 0 0 3px #D7DBDD !important;
+  }
+  .a-active-classification {
+    border-left: 4px solid #1abc9c;
+    background: #F2F3F4 !important;
+  }
+  .dropdown-toggle:after { content: none }
+}

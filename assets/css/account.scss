@@ -1,0 +1,51 @@
+.a-account-input {
+  border-radius: 12px;
+  border-color: #D7DBDD !important;
+  box-shadow: none !important;
+}
+.a-account-input:focus {
+  border-color: #D7DBDD !important;
+  box-shadow: 0 0 0 3px #D7DBDD !important;
+}
+.a-account-profile {
+  display: flex;
+  align-items: center;
+  .a-img-src {
+    border-radius: 50%;
+    border: 3px solid #E5E7E9;
+  }
+  .a-img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #d7dbdd;
+  }
+}
+.a-btn-add-profile {
+  box-shadow: none !important;
+  background: #3498db !important;
+  transition: background 0.2s ease;
+}
+.a-btn-add-profile:hover {
+  background: #328FCE !important;
+}
+.a-account-btn {
+  box-shadow: none !important;
+  background: #3498db !important;
+}
+.a-account-btn:hover {
+  background: #328FCE !important;
+}
+.a-input-group {
+  border-top-left-radius: 12.5px;
+  border-bottom-left-radius: 12.5px;
+  border-top-right-radius: 4.5px;
+  border-bottom-right-radius: 4.5px;
+  transition: box-shadow 0.2s ease;
+  .a-input-span {
+    cursor: pointer;
+  }
+}
+.a-input-group:focus-within {
+  box-shadow: 0 0 0 3px #D7DBDD !important;
+}

@@ -1,0 +1,68 @@
+.a-statistic-check {
+  border-radius: 14px;
+  .a-input-verify-health-condition-group {
+    border-radius: 14px;
+    box-shadow: 0 0 0 1px #D7DBDD !important;
+      border-radius: 14px;
+    .a-verify-input {
+      border-radius: 14px;
+      box-shadow: none !important;
+    }
+    .a-verify-input:focus {
+      border-color: #D7DBDD !important;
+    }
+    .a-verify-health-condition-btn {
+      display: flex;
+      background: #6CD398;
+      border-top-right-radius: 14px;
+      border-bottom-right-radius: 14px;
+      border-color: #6CD398;
+      align-items: center;
+      box-shadow: none !important;
+    }
+  }
+  .a-input-verify-health-condition-group:focus-within {
+    box-shadow: 0 0 0 3px #D7DBDD !important;
+  }
+  .a-qrcode-reader {
+    .a-btn-qrcode-reader {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: #6CD398 !important;
+      box-shadow: 0 0 0 3px #C2F5D8 !important;
+      transition: box-shadow 0.2s ease, background 0.2s ease;
+    }
+    .a-btn-qrcode-reader:hover {
+      box-shadow: 0 0 0 3px #A8E7C3 !important;
+    }
+    .a-btn-qrcode-reader:active {
+      border: none !important;
+      background: #5FC289 !important;
+      box-shadow: none !important;
+    }
+  }
+}
+.a-qrcode-scanner {
+  position: absolute;
+  top: 0pt;
+  left: 0pt;
+  width: 300px;
+  height: auto;
+  background: #F7F9F9;
+  z-index: 20;
+  .a-close-qrcode-scanner {
+    position: absolute;
+    display: flex;
+    top: 10px;
+    right: 10px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #AAB7B8;
+    align-items: center;
+    justify-content: center;
+    box-shadow: none !important;
+    z-index: 30;
+  }
+}
