@@ -41,6 +41,15 @@
               </span>
             </button>
           </div>
+          <div class="pt-2">
+            <button
+              class="btn px-1 mt-1 a-main-font rounded text-light py-0 my-0 a-camera"
+              :disabled="!streamQrcode"
+              @click="toggleCamera"
+            >
+              {{ camera }}
+            </button>
+          </div>
           <div class="mt-3">
             <p class="my-0 a-main-font">Health Condition</p>
             <p
@@ -105,7 +114,7 @@
           </span>
         </button>
       </div>
-      <qrcode-stream v-if="streamQrcode" @decode="onDecode" @init="onInit" />
+      <qrcode-stream v-if="streamQrcode" :camera="camera" @decode="onDecode" @init="onInit" />
     </div>
   </div>
 </template>
@@ -140,7 +149,8 @@ export default {
     return {
       streamQrcode: false,
       userNumber: null,
-      userInfo: []
+      userInfo: [],
+      camera: 'rear'
     }
   },
   methods: {
@@ -148,6 +158,14 @@ export default {
       const vm = this
       vm.streamQrcode = !vm.streamQrcode
       vm.$refs['user-number'].focus()
+    },
+    toggleCamera () {
+      const vm = this
+      if (vm.camera === 'rear') {
+        vm.camera = 'front'
+      } else {
+        vm.camera = 'rear'
+      }
     },
     verifyHealth (e) {
       e.preventDefault()

@@ -42,6 +42,15 @@
       box-shadow: none !important;
     }
   }
+  .a-camera {
+    background: #6CD398;
+    cursor: pointer;
+    transition: background 0.2s ease, box-shadow 0.2s ease;
+  }
+  .a-camera:hover {
+    background: #5FC289;
+    box-shadow: 0 0 0 3px #C2F5D8 !important;
+  }
 }
 .a-qrcode-scanner {
   position: absolute;
