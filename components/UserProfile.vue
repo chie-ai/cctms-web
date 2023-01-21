@@ -3,15 +3,15 @@
     <div class="a-base-form a-display-flex px-3">
       <div class="a-userprofile-form bg-light my-lg-5 my-md-5 my-sm-2 my-3">
         <div class="a-userprofile-header a-display-flex py-2 px-3">
-          <div class="a-display-flex" style="width: 100%;">
-            <p class="h5 mt-1 mb-0 text-capitalize">
+          <div class="a-display-flex" style="width: 140%;">
+            <p class="h5 a-main-font mt-1 mb-0 text-uppercase font-weight-bold">
               <span class="material-symbols-outlined a-icon-size mb-1 a-va-m" style="font-size: 22px;">
               account_circle
               </span>
               {{ $store.state.userprofile.header }}
             </p>
           </div>
-          <div class="text-right" style="width: 100%;">
+          <div class="text-right" style="width: 60%;">
             <button
               class="btn btn-sm btn-link a-shadow-none"
               @click="$store.commit('userprofile/toggleUserProfileDialog', { status: false, header: null, user_id: null })"
@@ -39,7 +39,7 @@
             </div>
           </div>
           <template v-if="$store.state.userprofile.header !== 'view profile'">
-            <form v-on:submit="uploadProfile" enctype="multipart/form-data">
+            <form v-on:submit="uploadProfile">
               <div class="mb-2">
                 <input
                   ref="fileImage"
@@ -50,8 +50,13 @@
                   @change="previewProfile"
                 >
               </div>
+              <template v-if="isFileInvalid">
+                <div class="text-center">
+                  <p class="a-main-font my-0 py-0 px-2 text-light rounded" style="display: inline-block; background: #E26945;">Invalid file</p>
+                </div>
+              </template>
               <div class="text-right">
-                <button type="submit" :disabled="disableUploadBtn" class="btn a-btn-upload-profile px-3 text-light">
+                <button type="submit" :disabled="disableUploadBtn" class="btn a-btn-upload-profile px-3 text-light a-main-font">
                   <template v-if="uploading">
                     Uploading...
                   </template>
@@ -76,15 +81,16 @@ export default {
   data () {
     return {
       prevImage: null,
-      imageFile: null,
+      filename: null,
       uploading: false,
-      disableUploadBtn: true
+      disableUploadBtn: true,
+      isFileInvalid: false
     }
   },
   mounted () {
     const vm = this
     if (vm.$store.state.userprofile.profile) {
-      vm.prevImage = 'http://localhost:8000' + vm.$store.state.userprofile.profile
+      vm.prevImage = `${this.$config.BACKEND_BASE_URL}${vm.$store.state.userprofile.profile}`
     }
   },
   methods: {
@@ -94,9 +100,15 @@ export default {
     previewProfile () {
       try {
         const vm = this
-        vm.imageFile = vm.$refs.fileImage.files.item(0)
-        vm.prevImage = URL.createObjectURL(vm.imageFile)
-        vm.disableUploadBtn = false
+        const filename = vm.$refs.fileImage.files.item(0)
+        const ext = filename.name.split('.').pop()
+        vm.isFileInvalid = true
+        if (['jpeg','jgp','png'].includes(ext)) {
+          vm.filename = filename
+          vm.isFileInvalid = false
+          vm.disableUploadBtn = false
+          vm.prevImage = URL.createObjectURL(vm.filename)
+        }
       } catch (err) {
         console.log(err)
       }
@@ -126,7 +138,7 @@ export default {
       } else {
         await vm.$api.put(`/api/update-user-profile/${vm.$store.state.userprofile.user_id}/`, formData, vm.$utils.multipartHeader())
         vm.$store.commit('userprofile/toggleUserProfileDialog', { status: false, header: null, user_id: null })
-        
+
         setTimeout(() => {
           const popup = {
             status: true,
