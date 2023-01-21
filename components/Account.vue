@@ -83,7 +83,7 @@
                     <div class="col-lg-6 col-md-6 col-sm-12 col-12">
                       <div class="mb-3 a-account-profile">
                         <template v-if="prevProfile && user?.user_profile?.profile_file">
-                          <img :src="base + user?.user_profile?.profile_file" class="a-img-src shadow-sm" width="50px" height="50px" alt="User Profile">
+                          <img :src="`${$config.BACKEND_BASE_URL}${user?.user_profile?.profile_file}`" class="a-img-src shadow-sm" width="50px" height="50px" alt="User Profile">
                         </template>
                         <template v-else>
                           <div class="a-img" />
@@ -344,26 +344,19 @@ export default {
       staticUsername: '',
       accountTxnProcess: false,
       passwordTxnProcess: false,
-      userData: null,
-      base: 'http://localhost:8000',
       prevProfile: false
     }
   },
   props: {
     userType: String
   },
-  // watch: {
-  //   '$store.state.userprofile.active' (s) {
-  //     setTimeout(() => {
-  //       if (!s) {
-  //         this.prevProfile = false
-  //         setTimeout(() => {
-  //           this.getUserInformation()
-  //         }, 2000)
-  //       }
-  //     }, 1000)
-  //   }
-  // },
+  watch: {
+    '$store.state.userprofile.active' (s) {
+      if (!s) {
+        this.getUserInformation()
+      }
+    }
+  },
   mounted () {
     this.getUserInformation()
   },
@@ -373,7 +366,6 @@ export default {
       const api = '/api/get-current-user-information'
       const { data } = await vm.$api.get(api, vm.$utils.header())
       vm.user = data
-      vm.userData = data
       vm.prevProfile = true
     },
     async saveProfile (e) {

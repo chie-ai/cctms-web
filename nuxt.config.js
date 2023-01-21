@@ -87,7 +87,8 @@ export default {
   },
 
   publicRuntimeConfig: {
-    BASE_URL: process.env.BASE_URL,
+    BACKEND_BASE_URL: process.env.BACKEND_BASE_URL,
+    PAGE_ITEMS_NUMBER: process.env.PAGE_ITEMS_COUNT,
     OAUTH_TOOLKIT_CLIENT_ID: process.env.OAUTH_TOOLKIT_CLIENT_ID,
     OAUTH_TOOLKIT_CLIENT_SECRET: process.env.OAUTH_TOOLKIT_CLIENT_SECRET
   },

@@ -41,7 +41,7 @@ const pagination = (pageObj, searchPage) => {
   const nextPage = pageObj.next ? new URL(pageObj.next).searchParams.get('page') : null
   let previousPage = pageObj.previous ? new URL(pageObj.previous).searchParams.get('page') : null
   const currentPage = nextPage !== null ? (nextPage - 1) : nextPage === null ? Number(page) : (Number(previousPage) + 1)
-  let totalPages = pageObj.count / 6
+  let totalPages = pageObj.count / $nuxt.$config.PAGE_ITEMS_NUMBER
   const nPage = nextPage
   const pPage = previousPage
 

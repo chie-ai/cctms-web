@@ -160,7 +160,7 @@ export default {
     async verifyHealthCondition (usernumber) {
       const vm = this
       const { data } = await vm.$api.get(`/api/verify-user-health-condition/?user_number=${usernumber}`, vm.$utils.header())
-      // console.log('Data: ', data)
+      // console.log('Response: ', data)
       vm.userInfo = data
       if (data.length === 0) {
         const popup = {

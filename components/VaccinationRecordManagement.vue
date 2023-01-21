@@ -117,7 +117,7 @@
                   <tr class="bg-light shadow-sm" style="border-top: none !important;">
                     <th class="a-main-font text-capitalize text-center px-2 a-va-m" style="border-top: none !important;" scope="col">VACCINE BRAND</th>
                     <th class="a-main-font text-capitalize text-center px-2 a-va-m" style="border-top: none !important;" scope="col">VACCINATION DESCRIPTION</th>
-                    <th class="a-main-font text-capitalize text-center px-2 a-va-m" style="border-top: none !important;" scope="col">VACCINATED DATE</th>
+                    <th class="a-main-font text-capitalize text-center px-2 a-va-m" style="border-top: none !important;" scope="col">DATE VACCINATED</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -130,7 +130,7 @@
                   </template>
                   <template v-else>
                     <tr>
-                      <td class="text-center" colspan="3">NO COVID-19 CASE HISTORY</td>
+                      <td class="text-center" colspan="3">NO VACCINATION HISTORY</td>
                     </tr>
                   </template>
                 </tbody>
@@ -169,8 +169,9 @@ export default {
   methods: {
     async getVaccinationHistory () {
       const vm = this
-      const { data } = await vm.$api.get(`/api/get-vaccination-history/?user_id=${vm.$store.state.vaccinationrecordmanagement.user_id}`, vm.$utils.header())
-      console.log('Data: ', data)
+      const user_id = vm.$store.state.vaccinationrecordmanagement.user_id
+      const { data } = await vm.$api.get(`/api/get-vaccination-history/?user_id=${user_id}`, vm.$utils.header())
+      // console.log('Response: ', data)
       vm.vaccineRecords = data
     },
     submitForm (e) {
@@ -182,7 +183,7 @@ export default {
       // console.log('Form: ', vm.form)
       vm.$api.post('/api/record-vaccination', vm.form, vm.$utils.header())
         .then(res => {
-          console.log('Result: ', res)
+          // console.log('Response: ', res)
           vm.saved = true
           vm.saving = false
           vm.resetForm()
