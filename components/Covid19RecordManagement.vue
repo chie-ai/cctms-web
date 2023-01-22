@@ -4,7 +4,7 @@
       <div class="a-health-management-form bg-light my-lg-5 my-md-5 my-sm-2 my-3">
         <div class="a-management-header a-display-flex py-2 px-3">
           <div class="a-display-flex" style="width: 160%;">
-            <p class="h5 mt-1 mb-0 a-main-font">
+            <p class="h5 a-main-font mt-1 mb-0 font-weight-bold">
               <span class="material-symbols-outlined a-icon-size mb-2 a-va-m"> 
               medical_information
               </span>

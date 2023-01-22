@@ -11,7 +11,7 @@
                   person
                   </span>
                   CAMPUS {{ userType }}S
-                  <template v-if="!['covid-19 case', 'recovered covid-19 case'].includes(userType)">
+                  <template v-if="!['covid-19 case', 'recovered covid-19 case'].includes(userType) && $store.state.oauth2.usertype === 'admin'">
                     <button
                       class="btn btn-sm a-add-user-btn a-shadow-none px-3 text-light float-right mt-lg-0 mt-md-0 mt-sm-0 mt-2"
                       @click="$store.commit('userform/activateForm', { status: true, header: `ADD ${userType.toUpperCase()}`, user_id: null })"
@@ -22,7 +22,7 @@
                       ADD
                     </button>
                   </template>
-                  <template v-else>
+                  <template v-else-if="userType === 'covid-19 case'">
                     <div class="dropdown float-right mt-lg-0 mt-md-0 mt-sm-0 mt-2">
                       <button class="btn a-add-user-btn btn-sm a-shadow-none px-3 dropdown-toggle text-light a-main-font" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Filter by: <span class="text-capitalize a-font-b">{{ filterByClassification }}</span>
@@ -32,7 +32,8 @@
                           <a
                             class="dropdown-item a-main-font py-2"
                             :class="{'a-active-classification': filterByClassification === 'all'}"
-                            href="#">
+                            href="#"
+                          >
                             All
                           </a>
                         </li>
@@ -140,6 +141,9 @@
               <thead class="a-main-font text-center">
                 <tr>
                   <th class="py-2 a-va-m text-uppercase">{{ !['covid-19 case', 'recovered covid-19 case'].includes(userType) ? userType : 'ID' }} NO.</th>
+                  <template v-if="['admin', 'health care staff'].includes($store.state.oauth2.usertype)">
+                    <th class="py-2 a-va-m">USERNAME</th>
+                  </template>
                   <th class="py-2 a-va-m">NAME</th>
                   <th class="py-2 a-va-m">GENDER</th>
                   <template v-if="userType === 'student'">
@@ -156,7 +160,7 @@
                     <th class="py-2 a-va-m">VACCINATION STATUS</th>
                   </template>
                   <template v-if="!['covid-19 case', 'recovered covid-19 case'].includes(userType)">
-                    <template v-if="['admin', 'health care staff'].includes(currentUserUsertype) && userType !== 'health care staff'">
+                    <template v-if="['admin', 'health care staff'].includes($store.state.oauth2.usertype) && userType !== 'health care staff'">
                       <th class="py-2 a-va-m px-2">ACTION</th>
                     </template>
                   </template>
@@ -171,6 +175,9 @@
                       >
                       #{{ user.user_number }}
                     </td>
+                    <template v-if="['admin', 'health care staff'].includes($store.state.oauth2.usertype)">
+                      <td class="a-main-font a-va-m px-2">{{ user.username }}</td>
+                    </template>
                     <td class="a-main-font text-uppercase a-va-m px-2">{{ user | fullname }}</td>
                     <td class="a-main-font text-center text-uppercase a-va-m px-2">{{ user.sex }}</td>
                     <template v-if="userType === 'student'">
@@ -191,11 +198,10 @@
                       </td>
                     </template>
                     <template v-if="!['covid-19 case', 'recovered covid-19 case'].includes(userType)">
-                      <template v-if="['admin', 'health care staff'].includes(currentUserUsertype) && userType !== 'health care staff'">
+                      <template v-if="['admin', 'health care staff'].includes($store.state.oauth2.usertype) && userType !== 'health care staff'">
                         <td class="a-main-font a-va-m">
                           <button
                             class="btn btn-sm a-action-btn a-display-flex a-align-center"
-                            :disabled="currentUserUsertype === 'health care staff' && userType === 'health care staff'"
                             type="button" data-bs-toggle="dropdown" aria-expanded="false"
                           >
                             <span class="material-symbols-outlined a-va-m text-light">
@@ -421,7 +427,7 @@ export default {
       const classification = vm.filterByClassification !== 'all' ? `&covid19_status__classification=${vm.filterByClassification}` : ''
       const filters = `${usertype}${usernumber}${firstname}${middlename}${lastname}${classification}${vm.pageValuePair}`
       const { data } = await vm.$api.get(`/api/get-users-list/?${filters}`, vm.$utils.header())
-      // console.log('User list: ', data)
+      console.log('User list: ', data)
       vm.users = data.results
       vm.count = data.count
       vm.currentUserUsertype = this.$store.state.oauth2.usertype

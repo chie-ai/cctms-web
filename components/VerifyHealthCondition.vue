@@ -47,7 +47,7 @@
               :disabled="!streamQrcode"
               @click="toggleCamera"
             >
-              {{ camera }}
+              camera: <span style="color: #F7DC6F;">{{ camera }}</span>
             </button>
           </div>
           <div class="mt-3">

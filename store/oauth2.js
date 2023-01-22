@@ -44,7 +44,7 @@ export const actions = {
   },
   async getUserBasicInfo ({ commit }) {
     const { data } = await $nuxt.$api.get('/api/get-current-user-information', $nuxt.$utils.header())
-    console.log('Data: ', data)
+    // console.log('Data: ', data)
     commit('setUserInfo', data)
   }
 }

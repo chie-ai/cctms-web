@@ -12,7 +12,7 @@
             <fieldset>
               <legend class="a-main-font h2 my-0">Authentication</legend>
               <hr class="a-hr mt-5 mb-2" />
-              <div class="a-error px-3 py-2 mb-2" :class="{'a-hide-error': error}">
+              <div class="a-error px-3 py-2 mb-2" :class="{'a-display-error': error}">
                 <p class="my-0" style="display: inline-block;">Please enter your correct credentials!</p>
                 <span @click="error = false" class="material-symbols-outlined a-icon-size a-va-m float-right a-pointer">
                 close

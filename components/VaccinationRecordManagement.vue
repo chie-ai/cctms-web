@@ -4,7 +4,7 @@
       <div class="a-vaccination-form bg-light my-lg-5 my-md-5 my-sm-2 my-3">
         <div class="a-userprofile-header a-display-flex py-2 px-3">
           <div class="a-display-flex" style="width: 180%;">
-            <p class="h5 mt-1 mb-0 text-capitalize">
+            <p class="h5 a-main-font mt-1 mb-0 font-weight-bold">
               <span class="material-symbols-outlined a-icon-size mb-1 a-va-m" style="font-size: 22px;">
               overview
               </span>
@@ -37,7 +37,7 @@
               <span class="material-symbols-outlined a-icon-size mb-1 a-va-m" style="font-size: 18px;">
               docs_add_on
               </span>
-              ADD VACCINATION PERIOD
+              ADD USER'S VACCINATION
             </p>
           </div>
           <hr class="a-hr my-0">
